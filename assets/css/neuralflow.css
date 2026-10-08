@@ -1,0 +1,1006 @@
+/* ==========================================================================
+   FLEETMORES.IN — NEURALFLOW THEME DESIGN SYSTEM
+   Ultra-clean BRIX Neuralflow aesthetic tailored for TruckBill ERP
+   ========================================================================== */
+
+@import url('https://api.fontshare.com/v2/css?f[]=uncut-sans@400,500,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Neuralflow Core Palette */
+  --nf-black: #080808;
+  --nf-dark-surface: #111418;
+  --nf-dark-card: #181C22;
+  --nf-dark-border: rgba(255, 255, 255, 0.08);
+  --nf-dark-border-hover: rgba(255, 255, 255, 0.2);
+  
+  --nf-white: #FFFFFF;
+  --nf-offwhite: #F8F9FA;
+  --nf-light-surface: #F3F5F8;
+  --nf-light-border: #E5E8ED;
+  --nf-light-border-hover: #CBD2DC;
+  
+  --nf-text-primary: #080808;
+  --nf-text-secondary: #4B5563;
+  --nf-text-muted: #6B7280;
+  
+  --nf-dark-text-primary: #F3F4F6;
+  --nf-dark-text-secondary: #9CA3AF;
+  --nf-dark-text-muted: #6B7280;
+  
+  --nf-accent-blue: #0025E9;
+  --nf-accent-electric: #1E40AF;
+  --nf-accent-light: #EEF2FF;
+  --nf-accent-border: #C7D2FE;
+  
+  --nf-success: #10B981;
+  --nf-warning: #F59E0B;
+  
+  /* Typography */
+  --font-main: 'Uncut Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  
+  /* Radii */
+  --radius-pill: 9999px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  
+  /* Transitions */
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-main);
+  background-color: var(--nf-white);
+  color: var(--nf-text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-main);
+  font-weight: 700;
+  color: var(--nf-text-primary);
+  letter-spacing: -0.035em;
+  margin-top: 0;
+  line-height: 1.2;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.container-nf {
+  width: 100%;
+  max-width: 1220px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+/* ==========================================================================
+   FLOATING ISLAND NAVBAR (Signature Neuralflow)
+   ========================================================================== */
+.nf-nav-wrapper {
+  position: sticky;
+  top: 16px;
+  z-index: 1000;
+  width: 100%;
+  padding: 0 16px;
+  pointer-events: none;
+}
+
+.nf-nav-island {
+  pointer-events: auto;
+  max-width: 1180px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.04);
+  padding: 10px 18px 10px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  transition: all 0.3s var(--ease-spring);
+}
+
+.nf-nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.nf-brand-logo {
+  height: 24px;
+  width: auto;
+  display: block;
+}
+
+.nf-product-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--nf-offwhite);
+  border: 1px solid var(--nf-light-border);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--nf-text-secondary);
+}
+
+.nf-product-pill img {
+  height: 12px;
+  width: auto;
+}
+
+.nf-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nf-nav-links li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nf-nav-links a {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--nf-text-secondary);
+  padding: 6px 4px;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+
+.nf-nav-links a:hover,
+.nf-nav-links a.active {
+  color: var(--nf-text-primary);
+  font-weight: 600;
+}
+
+.nf-nav-divider {
+  width: 1px;
+  height: 14px;
+  background-color: var(--nf-light-border);
+  display: inline-block;
+}
+
+.nf-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   BUTTONS (Neuralflow Signature Pill Buttons with Slide Hover)
+   ========================================================================== */
+.btn-nf {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-main);
+  font-size: 0.92rem;
+  font-weight: 600;
+  padding: 10px 22px;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.25s var(--ease-spring);
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.btn-nf-primary {
+  background: var(--nf-black);
+  color: var(--nf-white);
+  border-color: var(--nf-black);
+}
+
+.btn-nf-primary:hover {
+  background: #20242A;
+  color: var(--nf-white);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.btn-nf-secondary {
+  background: var(--nf-white);
+  color: var(--nf-text-primary);
+  border-color: var(--nf-light-border);
+}
+
+.btn-nf-secondary:hover {
+  background: var(--nf-offwhite);
+  border-color: var(--nf-text-primary);
+  transform: translateY(-2px);
+}
+
+.btn-nf-sm {
+  padding: 8px 18px;
+  font-size: 0.86rem;
+}
+
+.btn-nf-lg {
+  padding: 14px 32px;
+  font-size: 1.05rem;
+}
+
+.btn-arrow {
+  display: inline-block;
+  transition: transform 0.25s var(--ease-spring);
+}
+
+.btn-nf:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+/* ==========================================================================
+   BADGES & PILLS
+   ========================================================================== */
+.nf-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  background: var(--nf-offwhite);
+  border: 1px solid var(--nf-light-border);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--nf-text-primary);
+  margin-bottom: 20px;
+}
+
+.nf-pill-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--nf-accent-blue);
+  box-shadow: 0 0 0 3px rgba(0, 37, 233, 0.15);
+}
+
+.nf-pill-badge-dark {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: var(--nf-dark-text-primary);
+}
+
+/* ==========================================================================
+   SECTIONS
+   ========================================================================== */
+.nf-section {
+  padding: 90px 0;
+  position: relative;
+}
+
+.nf-section-light {
+  background-color: var(--nf-white);
+}
+
+.nf-section-offwhite {
+  background-color: var(--nf-offwhite);
+  border-top: 1px solid var(--nf-light-border);
+  border-bottom: 1px solid var(--nf-light-border);
+}
+
+.nf-section-dark {
+  background-color: var(--nf-black);
+  color: var(--nf-dark-text-primary);
+}
+
+.nf-section-dark h1,
+.nf-section-dark h2,
+.nf-section-dark h3,
+.nf-section-dark h4 {
+  color: var(--nf-dark-text-primary);
+}
+
+.nf-section-header {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 54px auto;
+}
+
+.nf-section-title {
+  font-size: clamp(2rem, 3.8vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  margin-bottom: 18px;
+}
+
+.nf-section-desc {
+  font-size: 1.125rem;
+  color: var(--nf-text-secondary);
+  line-height: 1.65;
+  margin: 0;
+}
+
+.nf-section-dark .nf-section-desc {
+  color: var(--nf-dark-text-secondary);
+}
+
+/* ==========================================================================
+   HERO SECTION (Neuralflow Centered Punchy Typography)
+   ========================================================================== */
+.nf-hero {
+  padding: 100px 0 60px 0;
+  text-align: center;
+  position: relative;
+}
+
+.nf-hero-title {
+  font-size: clamp(2.5rem, 5.6vw, 4.3rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  max-width: 980px;
+  margin: 0 auto 24px auto;
+}
+
+.nf-hero-desc {
+  font-size: clamp(1.1rem, 2vw, 1.28rem);
+  color: var(--nf-text-secondary);
+  max-width: 760px;
+  margin: 0 auto 36px auto;
+  line-height: 1.6;
+}
+
+.nf-hero-ctas {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 50px;
+}
+
+/* Hero Dashboard Showcase */
+.nf-dashboard-frame {
+  max-width: 1080px;
+  margin: 0 auto;
+  background: var(--nf-white);
+  border: 1px solid var(--nf-light-border);
+  border-radius: var(--radius-xl);
+  padding: 12px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.02);
+  position: relative;
+}
+
+.nf-dashboard-inner {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--nf-light-border);
+  background: #0B0E14;
+  position: relative;
+}
+
+.nf-dashboard-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.nf-floating-stat {
+  position: absolute;
+  padding: 12px 18px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--nf-light-border);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--nf-text-primary);
+  z-index: 10;
+}
+
+.nf-floating-stat-left {
+  top: 28px;
+  left: 24px;
+}
+
+.nf-floating-stat-right {
+  bottom: 28px;
+  right: 24px;
+}
+
+/* ==========================================================================
+   METRICS STRIP
+   ========================================================================== */
+.nf-metrics-strip {
+  padding: 44px 0;
+  border-top: 1px solid var(--nf-light-border);
+  border-bottom: 1px solid var(--nf-light-border);
+  background: var(--nf-offwhite);
+}
+
+.nf-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  text-align: center;
+}
+
+.nf-metric-item {
+  padding: 10px 16px;
+}
+
+.nf-metric-value {
+  font-size: clamp(2rem, 3.2vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--nf-text-primary);
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+
+.nf-metric-label {
+  font-size: 0.92rem;
+  color: var(--nf-text-secondary);
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   BENTO GRID CARDS (Neuralflow Signature)
+   ========================================================================== */
+.nf-bento-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.nf-bento-card {
+  background: var(--nf-white);
+  border: 1px solid var(--nf-light-border);
+  border-radius: var(--radius-lg);
+  padding: 34px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s var(--ease-spring);
+  position: relative;
+  overflow: hidden;
+}
+
+.nf-bento-card:hover {
+  border-color: var(--nf-text-primary);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+}
+
+.nf-bento-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.nf-bento-num {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--nf-text-muted);
+  background: var(--nf-offwhite);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--nf-light-border);
+}
+
+.nf-bento-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: var(--nf-offwhite);
+  border: 1px solid var(--nf-light-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+.nf-bento-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.nf-bento-desc {
+  font-size: 0.94rem;
+  color: var(--nf-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.nf-bento-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 16px;
+  border-top: 1px solid var(--nf-light-border);
+}
+
+.nf-tag-pill {
+  font-size: 0.76rem;
+  font-family: var(--font-mono);
+  padding: 3px 9px;
+  border-radius: var(--radius-pill);
+  background: var(--nf-offwhite);
+  border: 1px solid var(--nf-light-border);
+  color: var(--nf-text-secondary);
+}
+
+/* ==========================================================================
+   CONTRAST CARDS: OLD CHAOS VS TRUCKBILL
+   ========================================================================== */
+.nf-contrast-card {
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  border: 1px solid var(--nf-light-border);
+  height: 100%;
+}
+
+.nf-contrast-bad {
+  background: #FFFBFB;
+  border-color: #FED7D7;
+}
+
+.nf-contrast-good {
+  background: #F7FCF9;
+  border-color: #BBF7D0;
+}
+
+/* ==========================================================================
+   ROI CALCULATOR
+   ========================================================================== */
+.nf-calculator-box {
+  background: var(--nf-white);
+  border: 1px solid var(--nf-light-border);
+  border-radius: var(--radius-xl);
+  padding: 40px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+}
+
+.nf-slider-range {
+  width: 100%;
+  accent-color: var(--nf-black);
+  height: 6px;
+  border-radius: 4px;
+}
+
+.nf-calc-result-card {
+  background: var(--nf-offwhite);
+  border: 1px solid var(--nf-light-border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  text-align: center;
+}
+
+/* ==========================================================================
+   ACCORDION (Neuralflow Clean FAQ)
+   ========================================================================== */
+.nf-accordion {
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.nf-accordion-item {
+  background: var(--nf-white);
+  border: 1px solid var(--nf-light-border);
+  border-radius: var(--radius-md);
+  transition: all 0.25s ease;
+  overflow: hidden;
+}
+
+.nf-accordion-item:hover {
+  border-color: var(--nf-light-border-hover);
+}
+
+.nf-accordion-item.active {
+  border-color: var(--nf-black);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.04);
+}
+
+.nf-accordion-header {
+  padding: 22px 26px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.nf-accordion-question {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--nf-text-primary);
+}
+
+.nf-accordion-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--nf-offwhite);
+  border: 1px solid var(--nf-light-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: transform 0.25s ease;
+  flex-shrink: 0;
+}
+
+.nf-accordion-item.active .nf-accordion-icon {
+  transform: rotate(45deg);
+  background: var(--nf-black);
+  color: var(--nf-white);
+  border-color: var(--nf-black);
+}
+
+.nf-accordion-body {
+  padding: 0 26px 24px 26px;
+  font-size: 0.98rem;
+  color: var(--nf-text-secondary);
+  line-height: 1.65;
+  display: none;
+}
+
+.nf-accordion-item.active .nf-accordion-body {
+  display: block;
+}
+
+/* ==========================================================================
+   FOOTER (Deep Onyx Minimalist)
+   ========================================================================== */
+.nf-footer {
+  background-color: var(--nf-black);
+  color: var(--nf-dark-text-primary);
+  padding: 90px 0 40px 0;
+  border-top: 1px solid var(--nf-dark-border);
+}
+
+.nf-footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 70px;
+}
+
+.nf-footer-brand-bio {
+  color: var(--nf-dark-text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  margin-top: 18px;
+  max-width: 340px;
+}
+
+.nf-footer-col-title {
+  font-size: 0.88rem;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--nf-dark-text-muted);
+  margin-bottom: 22px;
+}
+
+.nf-footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.nf-footer-links a {
+  font-size: 0.92rem;
+  color: var(--nf-dark-text-secondary);
+  transition: color 0.2s ease;
+}
+
+.nf-footer-links a:hover {
+  color: var(--nf-white);
+}
+
+.nf-footer-bottom {
+  padding-top: 36px;
+  border-top: 1px solid var(--nf-dark-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  font-size: 0.88rem;
+  color: var(--nf-dark-text-muted);
+}
+
+/* ==========================================================================
+   DEMO BOOKING MODAL
+   ========================================================================== */
+.nf-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 8, 8, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 2000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.nf-modal-overlay.active {
+  display: flex;
+  opacity: 1;
+}
+
+.nf-modal-card {
+  background: var(--nf-white);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--nf-light-border);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+  width: 100%;
+  max-width: 580px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 36px;
+  position: relative;
+  transform: translateY(20px);
+  transition: transform 0.3s var(--ease-spring);
+}
+
+.nf-modal-overlay.active .nf-modal-card {
+  transform: translateY(0);
+}
+
+.nf-modal-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--nf-offwhite);
+  border: 1px solid var(--nf-light-border);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.nf-modal-close:hover {
+  background: var(--nf-black);
+  color: var(--nf-white);
+}
+
+.nf-form-group {
+  margin-bottom: 18px;
+}
+
+.nf-form-label {
+  display: block;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--nf-text-primary);
+  margin-bottom: 6px;
+}
+
+.nf-form-input,
+.nf-form-select {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--nf-light-border);
+  font-family: var(--font-main);
+  font-size: 0.94rem;
+  color: var(--nf-text-primary);
+  background: var(--nf-white);
+  transition: all 0.2s ease;
+}
+
+.nf-form-input:focus,
+.nf-form-select:focus {
+  outline: none;
+  border-color: var(--nf-black);
+  box-shadow: 0 0 0 3px rgba(8, 8, 8, 0.08);
+}
+
+/* Mobile Sticky Bottom CTA */
+.nf-mobile-sticky-cta {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--nf-light-border);
+  z-index: 999;
+}
+
+/* Mobile Drawer */
+.nf-mobile-drawer {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 85%;
+  max-width: 360px;
+  height: 100vh;
+  background: var(--nf-white);
+  z-index: 2500;
+  padding: 30px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.15);
+  transition: right 0.3s var(--ease-spring);
+}
+
+.nf-mobile-drawer.active {
+  right: 0;
+}
+
+.nf-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2400;
+  display: none;
+}
+
+.nf-drawer-overlay.active {
+  display: block;
+}
+
+.nf-drawer-links {
+  list-style: none;
+  padding: 0;
+  margin: 32px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.nf-drawer-links a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--nf-text-primary);
+  padding: 10px 0;
+  border-bottom: 1px solid var(--nf-light-border);
+}
+
+/* Mobile Responsive */
+.nf-hamburger {
+  display: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--nf-offwhite);
+  border: 1px solid var(--nf-light-border);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.nf-hamburger span {
+  width: 18px;
+  height: 2px;
+  background-color: var(--nf-black);
+  border-radius: 2px;
+  transition: all 0.2s ease;
+}
+
+@media (max-width: 992px) {
+  .nf-nav-links {
+    display: none;
+  }
+  .nf-hamburger {
+    display: flex;
+  }
+  .nf-bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .nf-metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+  .nf-footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+  }
+  .nf-floating-stat {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .nf-bento-grid {
+    grid-template-columns: 1fr;
+  }
+  .nf-metrics-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .nf-footer-grid {
+    grid-template-columns: 1fr;
+  }
+  .nf-footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+  .nf-hero-ctas {
+    flex-direction: column;
+    width: 100%;
+  }
+  .nf-hero-ctas .btn-nf {
+    width: 100%;
+  }
+  .nf-mobile-sticky-cta {
+    display: block;
+  }
+  body {
+    padding-bottom: 70px;
+  }
+}
