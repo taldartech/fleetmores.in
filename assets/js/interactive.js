@@ -1,5 +1,63 @@
 // FleetMores.in Neuralflow Theme Interactive Logic
 
+// Lead submission — every enquiry is processed centrally by truckbill.in/submit.php
+const LEAD_SUBMIT_URL = window.location.hostname.endsWith('.test')
+  ? 'https://truckbill.test/submit.php'
+  : 'https://www.truckbill.in/submit.php';
+const LEAD_TRACKING_KEY = 'fleetmores_in_lead_tracking';
+const LEAD_SUBMIT_ERROR = 'We could not submit your request right now. Please try again or call +91 97844 51256.';
+
+const getLeadTracking = () => {
+  try {
+    const stored = sessionStorage.getItem(LEAD_TRACKING_KEY);
+    if (stored) return JSON.parse(stored);
+  } catch (err) {}
+
+  const params = new URLSearchParams(window.location.search);
+  const data = {
+    utm_source: params.get('utm_source') || '',
+    utm_medium: params.get('utm_medium') || '',
+    utm_campaign: params.get('utm_campaign') || '',
+    landing_url: window.location.href,
+    referrer: document.referrer || ''
+  };
+
+  try {
+    sessionStorage.setItem(LEAD_TRACKING_KEY, JSON.stringify(data));
+  } catch (err) {}
+
+  return data;
+};
+
+const submitLead = (form, formName) => {
+  const body = new URLSearchParams(new FormData(form));
+  body.set('userType', 'Demo Request');
+  body.set('form_name', formName);
+  body.set('page_url', window.location.href);
+
+  const tracking = getLeadTracking();
+  Object.keys(tracking).forEach((key) => {
+    if (tracking[key]) body.set(key, tracking[key]);
+  });
+
+  return fetch(LEAD_SUBMIT_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: body
+  })
+    .then((response) => response.json().catch(() => ({})), () => ({}))
+    .then((result) => {
+      if (result && result.success) return result;
+      throw new Error((result && result.message) || LEAD_SUBMIT_ERROR);
+    });
+};
+
+const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (ch) => (
+  { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]
+));
+
+getLeadTracking();
+
 document.addEventListener('DOMContentLoaded', () => {
   // Mobile Nav Drawer Toggle
   const hamburgerBtn = document.getElementById('nfHamburgerBtn');
@@ -114,6 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function handleDemoSubmit(e) {
   if (e && e.preventDefault) e.preventDefault();
   const form = e ? (e.target || e.srcElement) : document.getElementById('demoBookingForm');
+  if (!form) return false;
 
   const getVal = (id, nameAttr) => {
     if (form) {
@@ -138,12 +197,22 @@ function handleDemoSubmit(e) {
   }
 
   const submitBtn = form ? form.querySelector('button[type="submit"]') : document.getElementById('demoSubmitBtn');
+  const submitBtnHtml = submitBtn ? submitBtn.innerHTML : '';
   if (submitBtn) {
     submitBtn.disabled = true;
     submitBtn.innerHTML = '<span>Scheduling your live demo...</span>';
   }
 
-  setTimeout(() => {
+  const safe = {
+    name: escapeHtml(name),
+    email: escapeHtml(email),
+    phone: escapeHtml(phone),
+    company: escapeHtml(company),
+    city: escapeHtml(city),
+    state: escapeHtml(state)
+  };
+
+  submitLead(form, form.id === 'contactPageForm' ? 'contact_page' : 'demo_modal').then(() => {
     const demoModal = document.getElementById('nfDemoModal');
     if (demoModal && demoModal.classList.contains('active')) {
       const modalBody = demoModal.querySelector('.nf-modal-body');
@@ -151,8 +220,8 @@ function handleDemoSubmit(e) {
         modalBody.innerHTML = `
           <div style="text-align: center; padding: 30px 10px;">
             <div style="width: 64px; height: 64px; border-radius: 50%; background: #F0FDF4; color: #16A34A; font-size: 2rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; border: 2px solid #BBF7D0;">✓</div>
-            <h3 style="font-size: 1.5rem; margin-bottom: 10px;">Demo Confirmed, ${name}!</h3>
-            <p style="color: #4B5563; margin-bottom: 24px;">Our TruckBill specialist will connect with you on <strong>${phone}</strong> and <strong>${email}</strong> for <strong>${company}</strong> (${city}, ${state}).</p>
+            <h3 style="font-size: 1.5rem; margin-bottom: 10px;">Demo Confirmed, ${safe.name}!</h3>
+            <p style="color: #4B5563; margin-bottom: 24px;">Our TruckBill specialist will connect with you on <strong>${safe.phone}</strong> and <strong>${safe.email}</strong> for <strong>${safe.company}</strong> (${safe.city}, ${safe.state}).</p>
             <div style="margin-bottom: 20px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
               <a href="https://wa.me/919784451256?text=Hi%20FleetMores%20Team%2C%20I%20requested%20a%20demo%20for%20${encodeURIComponent(company)}" target="_blank" rel="noopener" class="btn-nf btn-nf-primary" style="padding: 0.6rem 1.4rem;"><span>Chat on WhatsApp</span></a>
               <button class="btn-nf btn-nf-secondary" onclick="location.reload()" style="padding: 0.6rem 1.4rem;"><span>Close</span></button>
@@ -168,8 +237,8 @@ function handleDemoSubmit(e) {
       form.innerHTML = `
         <div style="text-align: center; padding: 36px 20px; background: #F9FAFB; border-radius: var(--radius-lg); border: 1px solid var(--nf-light-border);">
           <div style="width: 56px; height: 56px; border-radius: 50%; background: #F0FDF4; color: #16A34A; font-size: 1.8rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">✓</div>
-          <h3 style="font-size: 1.4rem; margin-bottom: 8px;">Thank You, ${name}!</h3>
-          <p style="color: #4B5563; margin-bottom: 20px;">Your TruckBill walkthrough request has been scheduled for <strong>${company}</strong>. Our specialist will call you on <strong>${phone}</strong>.</p>
+          <h3 style="font-size: 1.4rem; margin-bottom: 8px;">Thank You, ${safe.name}!</h3>
+          <p style="color: #4B5563; margin-bottom: 20px;">Your TruckBill walkthrough request has been scheduled for <strong>${safe.company}</strong>. Our specialist will call you on <strong>${safe.phone}</strong>.</p>
           <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
             <a href="https://wa.me/919784451256?text=Hi%20FleetMores%20Team%2C%20I%20requested%20a%20demo%20for%20${encodeURIComponent(company)}" target="_blank" rel="noopener" class="btn-nf btn-nf-primary py-2 px-4" style="font-size: 0.9rem;"><span>WhatsApp Us Now</span></a>
             <a href="tel:+919784451256" class="btn-nf btn-nf-secondary py-2 px-4" style="font-size: 0.9rem;"><span>Call +91 97844 51256</span></a>
@@ -177,7 +246,13 @@ function handleDemoSubmit(e) {
         </div>
       `;
     }
-  }, 800);
+  }).catch((err) => {
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = submitBtnHtml;
+    }
+    alert(err.message || LEAD_SUBMIT_ERROR);
+  });
 
   return false;
 }
