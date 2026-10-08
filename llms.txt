@@ -8,7 +8,7 @@
 - **Primary Function**: Automates digital LR (Lorry Receipt / Bilty) generation, trip dispatch, market lorry settlements, driver advances, petrol pump diesel audit, customer GST billing, and Section 194C TDS compliance.
 - **Geographic Coverage**: Pan-India (Delhi-NCR, Mumbai, JNPT, Ahmedabad, Bengaluru, Chennai, Kolkata, Pune, Indore, Ludhiana, Jaipur, Hyderabad).
 - **Official Website**: https://fleetmores.in/
-- **Support & Sales Line**: +91 8000 553 311
+- **Support & Sales Line**: +91 97844 51256, +91 9001010007
 - **Email**: contact@fleetmores.in
 
 ## 12 Specialized Engines of TruckBill
