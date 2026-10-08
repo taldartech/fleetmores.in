@@ -25,11 +25,6 @@
 11. Multi-Branch Hierarchy (Head office visibility over booking branches and delivery depots)
 12. WhatsApp Business Intelligence (Automated document delivery and payment reminders)
 
-## Pricing Plans (INR)
-- **Starter**: ₹1,499 / month (Up to 15 trucks / single branch)
-- **Growth (Recommended)**: ₹3,499 / month (15–70 trucks, multi-branch, diesel audit, full transport ledgers)
-- **Enterprise**: Custom ROI plan (70+ trucks, custom API sync, dedicated support)
-
 ## Indian Compliance & Localization
 - **GST Compliance**: Reverse Charge Mechanism (RCM) & Forward Charge Mechanism (FCM) support.
 - **Income Tax**: Automated Section 194C TDS deduction & Pan-10 truck declaration recordkeeping.
