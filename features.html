@@ -596,54 +596,61 @@
         </p>
       </div>
 
-      <form onsubmit="return handleDemoSubmit(event);">
-        <div class="nf-form-group">
-          <label class="nf-form-label" for="demoName">Your Full Name *</label>
-          <input type="text" class="nf-form-input" id="demoName" required placeholder="e.g. Rajesh Sharma">
-        </div>
-        <div class="nf-form-group">
-          <label class="nf-form-label" for="demoPhone">Mobile / WhatsApp Number *</label>
-          <input type="tel" class="nf-form-input" id="demoPhone" required placeholder="e.g. 98765 43210">
-        </div>
-        <div class="nf-form-group">
-          <label class="nf-form-label" for="demoCompany">Transport Company / Firm Name *</label>
-          <input type="text" class="nf-form-input" id="demoCompany" required placeholder="e.g. Sharma Roadways Pvt Ltd">
-        </div>
-        <div class="row g-2">
-          <div class="col-6">
+            <form id="demoBookingForm" onsubmit="return handleDemoSubmit(event);">
+        <div class="row g-3">
+          <div class="col-12 col-md-6">
             <div class="nf-form-group">
-              <label class="nf-form-label" for="demoFleetSize">Fleet / Monthly LRs</label>
-              <select class="nf-form-select" id="demoFleetSize">
-                <option value="1-10">1 – 10 Trucks / LRs</option>
-                <option value="11-30">11 – 30 Trucks</option>
-                <option value="31-100" selected>31 – 100 Trucks</option>
-                <option value="100+">100+ Enterprise Fleet</option>
-                <option value="broker">Broker / Commission Agency</option>
-              </select>
+              <label class="nf-form-label" for="demoName">Name *</label>
+              <input type="text" class="nf-form-input" id="demoName" name="name" required placeholder="e.g. Rajesh Sharma" autocomplete="name">
             </div>
           </div>
-          <div class="col-6">
+          <div class="col-12 col-md-6">
             <div class="nf-form-group">
-              <label class="nf-form-label" for="demoSlot">Preferred Time</label>
-              <select class="nf-form-select" id="demoSlot">
-                <option value="Today Afternoon">Today Afternoon</option>
-                <option value="Tomorrow Morning">Tomorrow Morning</option>
-                <option value="Tomorrow Afternoon">Tomorrow Afternoon</option>
-                <option value="Custom Time">Call me anytime</option>
-              </select>
+              <label class="nf-form-label" for="demoEmail">Email *</label>
+              <input type="email" class="nf-form-input" id="demoEmail" name="email" required placeholder="e.g. rajesh@company.com" autocomplete="email">
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="nf-form-group">
+              <label class="nf-form-label" for="demoPhone">Mobile *</label>
+              <input type="tel" class="nf-form-input" id="demoPhone" name="phone" required placeholder="e.g. 98765 43210" autocomplete="tel">
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="nf-form-group">
+              <label class="nf-form-label" for="demoCompany">Company *</label>
+              <input type="text" class="nf-form-input" id="demoCompany" name="company" required placeholder="e.g. Sharma Roadways Pvt Ltd" autocomplete="organization">
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="nf-form-group">
+              <label class="nf-form-label" for="demoCity">City *</label>
+              <input type="text" class="nf-form-input" id="demoCity" name="city" required placeholder="e.g. Jaipur, Mumbai, Ahmedabad" autocomplete="address-level2">
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="nf-form-group">
+              <label class="nf-form-label" for="demoState">State *</label>
+              <input type="text" class="nf-form-input" id="demoState" name="state" required placeholder="e.g. Rajasthan, Maharashtra" autocomplete="address-level1">
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="nf-form-group">
+              <label class="nf-form-label" for="demoRemark">Remark <span style="font-weight: 400; color: var(--nf-text-muted); font-size: 0.85rem;">(Optional)</span></label>
+              <textarea class="nf-form-input" id="demoRemark" name="remark" rows="2" placeholder="Any specific requirements or notes (optional)" style="min-height: 70px; resize: vertical;"></textarea>
             </div>
           </div>
         </div>
 
-        <div style="margin-top: 18px;">
+        <div style="margin-top: 20px;">
           <button type="submit" class="btn-nf btn-nf-primary w-100 py-3" id="demoSubmitBtn">
-            <span>Confirm Live Demo Booking</span> <span class="btn-arrow">→</span>
+            <span>Schedule Free Demo</span> <span class="btn-arrow">→</span>
           </button>
         </div>
 
         <div style="text-align: center; margin-top: 14px;">
-          <span style="font-size: 0.8rem; color: var(--nf-text-muted);">
-            🔒 100% Free • No Credit Card Required • Instant WhatsApp Confirmation
+          <span style="font-size: 0.82rem; color: var(--nf-text-muted);">
+            🔒 100% Free • No Credit Card • Call us: <a href="tel:+919784451256" style="color: var(--nf-black); font-weight: 600;">+91 97844 51256</a> / <a href="tel:+919001010007" style="color: var(--nf-black); font-weight: 600;">+91 9001010007</a>
           </span>
         </div>
       </form>
